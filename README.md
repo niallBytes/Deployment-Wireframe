@@ -141,7 +141,7 @@ Learn more about the power of Turborepo:
 ```sh
 docker build -t start-backend -f ./docker/Dockerfile.backend .
 docker volume create postgres_data:/var/lib/postgresql/data
-docker run -d -e DATABASE_URL="postgresql://postgres:niall123@localhost:5432/postgres" -v postgres_data --network first_network -p 8080:8080 start-backend
+docker run -d -e DATABASE_URL="postgresql://postgres:db_pass@localhost:5432/postgres" -v postgres_data --network first_network -p 8080:8080 start-backend
 docker tag start-backend docker.io/niall1224/start-backend:latest
 docker push docker.io/niall1224/start-backend:latest
 ```
@@ -151,7 +151,7 @@ docker push docker.io/niall1224/start-backend:latest
 ```sh
 docker build -t start-websocket -f ./docker/Dockerfile.ws .
 docker volume create postgres_data:/var/lib/postgresql/data
-docker run -d -e DATABASE_URL="postgresql://postgres:niall123@localhost:5432/postgres" -v postgres_data --network first_network -p 8081:8081 start-websocket
+docker run -d -e DATABASE_URL="postgresql://postgres:db_pass@localhost:5432/postgres" -v postgres_data --network first_network -p 8081:8081 start-websocket
 docker tag start-websocket docker.io/niall1224/start-websocket:latest
 docker push docker.io/niall1224/start-websocket:latest
 ```
@@ -159,9 +159,9 @@ docker push docker.io/niall1224/start-websocket:latest
 ## Docker(Frontend)
 
 ```sh
-docker build --build-arg DATABASE_URL="postgresql://postgres:niall123@localhost:5432/postgres" -t start-frontend -f ./docker/Dockerfile.frontend .
+docker build --build-arg DATABASE_URL="postgresql://postgres:db_pass@localhost:5432/postgres" -t start-frontend -f ./docker/Dockerfile.frontend .
 docker volume create postgres_data:/var/lib/postgresql/data
-docker run -d -e DATABASE_URL="postgresql://postgres:niall123@localhost:5432/postgres" -v postgres_data --network first_network -p 3000:3000 start-frontend
+docker run -d -e DATABASE_URL="postgresql://postgres:db_pass@localhost:5432/postgres" -v postgres_data --network first_network -p 3000:3000 start-frontend
 docker tag start-frontend docker.io/niall1224/start-frontend:latest
 docker push docker.io/niall1224/start-frontend:latest
 ```
