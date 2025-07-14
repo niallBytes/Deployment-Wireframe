@@ -1,7 +1,9 @@
 import { prismaClient } from "db/client";
 
 export async function getServerSideProps() {
-  const users = await prismaClient.user.findMany();
+  //const users = await prismaClient.user.findMany();
+  const users = [{ name: 'Placeholder User' }];
+
   return { props: { users } };
 }
 
