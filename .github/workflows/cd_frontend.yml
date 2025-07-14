@@ -28,4 +28,4 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.204.62.141 -t "docker stop start-websocket && docker run --name start-websocket -d -p 8081:8081 Niall1224/start-websocket:${{ github.sha }}"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.204.62.141 -t "docker rm -f start-frontend || true && docker run --name start-websocket -d -p 8081:8081 Niall1224/start-websocket:${{ github.sha }}"

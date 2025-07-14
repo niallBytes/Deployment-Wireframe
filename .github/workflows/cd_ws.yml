@@ -19,11 +19,11 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./docker/Dockerfile.websocket
+          file: ./docker/Dockerfile.ws
           push: true
           tags: docker.io/niall1224/start-websocket:${{ github.sha }}
       - name: Deploy to the VM
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
           chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.204.62.141 -t "docker stop start-websocket && docker run --name start-websocket -d -p 8081:8081 Niall1224/start-websocket:${{ github.sha }}"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.204.62.141 -t "docker rm -f start-websocket || true && docker run --name start-websocket -d -p 8081:8081 Niall1224/start-websocket:${{ github.sha }}"
