@@ -6,13 +6,14 @@ ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
 
 COPY ./packages ./packages
-COPY ./packages/db/.env .env
 COPY ./bun.lock ./bun.lock
 
 COPY ./package.json ./package.json
 COPY ./turbo.json ./turbo.json
 
 COPY ./apps/web ./apps/web
+
+RUN echo "Prisma sees DATABASE_URL as: $DATABASE_URL"
 
 RUN apt-get update && apt-get install -y openssl
 RUN bun install
