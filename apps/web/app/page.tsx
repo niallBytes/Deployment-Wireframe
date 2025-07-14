@@ -1,12 +1,12 @@
 import { prismaClient } from "db/client";
 
-export default async function Home() {
+export async function getServerSideProps() {
   const users = await prismaClient.user.findMany();
-  return (
-    <div>
-      {JSON.stringify(users)}
-    </div>
-  );
+  return { props: { users } };
+}
+
+export default function Home({ users }: { users: any[] }) {
+  return <div>{JSON.stringify(users)}</div>;
 }
 
 // INCREMENTAL SITE GENERATION (ISR) - This is a feature of Next.js that allows you to update static pages after the build time

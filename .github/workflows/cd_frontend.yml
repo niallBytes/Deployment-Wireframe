@@ -15,9 +15,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Write temporary .env file for Prisma
-        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" > packages/db/.env    
-      
       - name: Build and push 
         uses: docker/build-push-action@v4
         with:
@@ -27,6 +24,7 @@ jobs:
             DATABASE_URL=${{ secrets.DATABASE_URL }}
           push: true
           tags: docker.io/niall1224/start-frontend:${{ github.sha }}
+
       - name: Deploy to the VM
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
