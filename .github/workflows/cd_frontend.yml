@@ -23,7 +23,7 @@ jobs:
           build-args:
             DATABASE_URL=${{ secrets.DATABASE_URL }}
           push: true
-          tags: docker.io/Niall1224/start-frontend:${{ github.sha }}
+          tags: docker.io/niall1224/start-frontend:${{ github.sha }}
       - name: Deploy to the VM
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
