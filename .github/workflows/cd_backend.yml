@@ -21,7 +21,7 @@ jobs:
           context: .
           file: ./docker/Dockerfile.backend
           push: true
-          tags: Niall1224/start-backend:${{ github.sha }}
+          tags: docker.io/Niall1224/start-backend:${{ github.sha }}
       - name: Deploy to the VM
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" &> ~/ssh_key
