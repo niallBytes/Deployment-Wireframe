@@ -24,6 +24,7 @@ jobs:
             DATABASE_URL=${{ secrets.DATABASE_URL }}
           push: true
           tags: docker.io/niall1224/start-frontend:${{ github.sha }}
+          no-cache: true
 
       - name: Deploy to the VM
         run: |
