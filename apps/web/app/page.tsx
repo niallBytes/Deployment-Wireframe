@@ -19,7 +19,7 @@ export default async function Home() {
 
 
 // If you force the page to be dynamic, It will not be statically generated. // No need to bun run build in the dockerfile
-// export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
 
 // BUT If You want to keep the page statically generated and talk to the database when building the page, You need to pass the DATABASE_URL in the bun run build Like how it is done in Dockerfile.frontend 

@@ -12,11 +12,10 @@ COPY ./turbo.json ./turbo.json
 COPY ./apps/web ./apps/web
 
 RUN apt-get update && apt-get install -y openssl
-RUN echo "DATABASE_URL=$DATABASE_URL" > .env
 RUN bun install
 RUN bun run db:generate
 
-RUN bun run build
+RUN DATABASE_URL=$DATABASE_URL bun run build
 
 EXPOSE 3000
 
